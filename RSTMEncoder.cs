@@ -73,9 +73,9 @@ namespace RSTMLib
 			fixed (byte* addr = array) {
 				//Get section pointers
 				RSTMHeader* rstm = (RSTMHeader*)addr;
-				HEADHeader* head = (HEADHeader*)((int)rstm + rstmSize);
-				ADPCHeader* adpc = (ADPCHeader*)((int)head + headSize);
-				RSTMDATAHeader* data = (RSTMDATAHeader*)((int)adpc + adpcSize);
+				HEADHeader* head = (HEADHeader*)((byte*)rstm + rstmSize);
+				ADPCHeader* adpc = (ADPCHeader*)((byte*)head + headSize);
+				RSTMDATAHeader* data = (RSTMDATAHeader*)((byte*)adpc + adpcSize);
 
 				//Initialize sections
 				rstm->Set(headSize, adpcSize, dataSize);
@@ -99,7 +99,7 @@ namespace RSTMLib
 				part1->_lastBlockTotal = lbTotal;
 				part1->_dataInterval = 0x3800;
 				part1->_bitsPerSample = 4;
-            
+			
 				//Create one ADPCMInfo for each channel
 				int* adpcData = stackalloc int[channels];
 				ADPCMInfo** pAdpcm = (ADPCMInfo**)adpcData;

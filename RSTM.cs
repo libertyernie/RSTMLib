@@ -44,7 +44,7 @@ namespace RSTMLib
             _header._length = len + dataLen;
 
             //Fill padding
-            byte* start = (byte*)(Address + 0x28);
+            byte* start = (byte*)Address + 0x28;
             byte* end = start + 0x18;
             for (byte* ptr = start; ptr < end; ptr++)
             {
@@ -71,7 +71,7 @@ namespace RSTMLib
         public void Set(int size, int channels)
         {
             RuintList* list;
-            uint offset = _entries.Address;
+            VoidPtr offset = _entries.Address;
             int dataOffset = 0x60 + (channels * 8);
 
             _tag = Tag;
