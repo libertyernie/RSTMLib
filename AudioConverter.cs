@@ -38,8 +38,7 @@ namespace RSTMLib
             double* sChunkBuffer = stackalloc double[3];
             double* omgBuffer = stackalloc double[3];
 
-            int* pChannelData = stackalloc int[3];
-            double** pChannels = (double**)pChannelData;
+			double** pChannels = stackalloc double*[3];
             for (int z = 0; z <= 2; z++)
                 pChannels[z] = (double*)Marshal.AllocHGlobal(3 * 8);
 

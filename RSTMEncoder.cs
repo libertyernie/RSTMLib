@@ -73,9 +73,9 @@ namespace RSTMLib
 			fixed (byte* addr = array) {
 				//Get section pointers
 				RSTMHeader* rstm = (RSTMHeader*)addr;
-				HEADHeader* head = (HEADHeader*)((byte*)rstm + rstmSize);
-				ADPCHeader* adpc = (ADPCHeader*)((byte*)head + headSize);
-				RSTMDATAHeader* data = (RSTMDATAHeader*)((byte*)adpc + adpcSize);
+				HEADHeader* head = (HEADHeader*)((VoidPtr)rstm + rstmSize);
+				ADPCHeader* adpc = (ADPCHeader*)((VoidPtr)head + headSize);
+				RSTMDATAHeader* data = (RSTMDATAHeader*)((VoidPtr)adpc + adpcSize);
 
 				//Initialize sections
 				rstm->Set(headSize, adpcSize, dataSize);
